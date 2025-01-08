@@ -1,0 +1,59 @@
+using Supabase.Postgrest.Attributes;
+using Supabase.Postgrest.Models;
+
+namespace Models;
+
+[Table("Orders")]
+public class Order : BaseModel
+{
+    [PrimaryKey("id")]
+    public int Id { get; set; }
+
+    [Column("client_id")]
+    public int ClientId { get; set; }
+
+    [Column("type")]
+    public required string Type { get; set; }
+
+    [Column("finish")]
+    public required string Finish { get; set; }
+
+    [Column("caliber")]
+    public int Caliber { get; set; }
+
+    [Column("length")]
+    public decimal Length { get; set; }
+
+    [Column("quantity")]
+    public int Quantity { get; set; }
+
+    [Column("kg")]
+    public decimal Kg { get; set; }
+
+    [Column("description")]
+    public string? Description { get; set; }
+
+    [Column("done")]
+    public bool Done { get; set; }
+
+    [Column("paid")]
+    public bool Paid { get; set; }
+
+    [Column("user_uuid")]
+    public required string UserUuid { get; set; }
+
+    [Column("done_at")]
+    public DateTimeOffset? DoneAt { get; set; }
+
+    [Column("paid_at")]
+    public DateTimeOffset? PaidAt { get; set; }
+
+    [Column("created_at")]
+    public DateTimeOffset? CreatedAt { get; set; }
+
+    [Column("modified_at")]
+    public DateTimeOffset? ModifiedAt { get; set; }
+
+    [Column("are_ft")]
+    public bool AreFt { get; set; }
+}
