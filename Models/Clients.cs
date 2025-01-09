@@ -28,8 +28,8 @@ public class Client : BaseModel
     public string? PhoneNumber { get; set; }
 
     [Column("modified_at")]
-    public DateTimeOffset? ModifiedAt { get; set ; } = DateTimeOffset.UtcNow;
+    public DateTimeOffset ModifiedAt { get; set ; } = DateTimeOffset.UtcNow;
 
     [Column("created_at")]
-    public DateTimeOffset? CreatedAt { get; set; } = DateTimeOffset.UtcNow;
+    public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
 }
