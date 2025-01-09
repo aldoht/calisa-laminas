@@ -3,7 +3,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 
-var url = builder.Configuration["SUPABASE_URL"];
+var url = builder.Configuration["SUPABASE_URL"]!;
 var key = builder.Configuration["SUPABASE_KEY"];
 var options = new Supabase.SupabaseOptions
 {
