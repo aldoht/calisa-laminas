@@ -10,10 +10,10 @@ public class Client : BaseModel
     public int Id { get; set; }
 
     [Column("first_name")]
-    public required string FirstName { get; set; }
+    public string FirstName { get; set; }
 
     [Column("last_name")]
-    public required string LastName { get; set; }
+    public string LastName { get; set; }
 
     [Column("alias")]
     public string? Alias { get; set; }
@@ -28,8 +28,8 @@ public class Client : BaseModel
     public string? PhoneNumber { get; set; }
 
     [Column("modified_at")]
-    public DateTimeOffset ModifiedAt { get; set; }
+    public DateTimeOffset? ModifiedAt { get; set ; } = DateTimeOffset.UtcNow;
 
     [Column("created_at")]
-    public DateTimeOffset CreatedAt { get; set; }
+    public DateTimeOffset? CreatedAt { get; set; } = DateTimeOffset.UtcNow;
 }

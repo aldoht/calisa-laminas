@@ -16,14 +16,14 @@ public class Payment : BaseModel
     public decimal Amount { get; set; }
 
     [Column("method")]
-    public required string Method { get; set; }
+    public string Method { get; set; }
 
     [Column("bank")]
     public string? Bank { get; set; }
 
     [Column("created_at")]
-    public DateTimeOffset? CreatedAt { get; set; }
+    public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
 
     [Column("user_id")]
-    public required string UserId { get; set; }
+    public string UserId { get; set; }
 }

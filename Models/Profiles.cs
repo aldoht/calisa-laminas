@@ -7,11 +7,14 @@ namespace Models;
 public class Profile : BaseModel
 {
     [PrimaryKey("id")]
-    public required string Id { get; set; }
+    public string Id { get; set; }
 
     [Column("first_name")]
-    public required string FirstName { get; set; }
+    public string FirstName { get; set; }
 
     [Column("last_name")]
-    public required string LastName { get; set; }
+    public string LastName { get; set; }
+
+    [Column("role")]
+    public string Role { get; set; }
 }

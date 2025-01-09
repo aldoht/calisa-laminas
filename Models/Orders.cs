@@ -13,10 +13,10 @@ public class Order : BaseModel
     public int ClientId { get; set; }
 
     [Column("type")]
-    public required string Type { get; set; }
+    public string Type { get; set; }
 
     [Column("finish")]
-    public required string Finish { get; set; }
+    public string Finish { get; set; }
 
     [Column("caliber")]
     public int Caliber { get; set; }
@@ -40,7 +40,7 @@ public class Order : BaseModel
     public bool Paid { get; set; }
 
     [Column("user_uuid")]
-    public required string UserUuid { get; set; }
+    public string UserUuid { get; set; }
 
     [Column("done_at")]
     public DateTimeOffset? DoneAt { get; set; }
@@ -49,10 +49,10 @@ public class Order : BaseModel
     public DateTimeOffset? PaidAt { get; set; }
 
     [Column("created_at")]
-    public DateTimeOffset? CreatedAt { get; set; }
+    public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
 
     [Column("modified_at")]
-    public DateTimeOffset? ModifiedAt { get; set; }
+    public DateTimeOffset ModifiedAt { get; set; } = DateTimeOffset.UtcNow;
 
     [Column("are_ft")]
     public bool AreFt { get; set; }
