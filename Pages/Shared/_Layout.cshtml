@@ -3,8 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - laminas_calisa</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="icon" href="@Url.Content("~/logos/calisa-icon.ico")">
     <style>
         .logo {
             max-width: 60% !important;
@@ -26,39 +27,52 @@
         p {
             margin: 0;
         }
+
+        .nav-ul {
+            gap: 3rem;
+            color: #f0f0f0;
+        }
+
+        .nav-ul a {
+            color: #f0f0f0;
+        }
+
+        .dropdown-menu a {
+            color: #000;
+        }
     </style>
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-lg bg-primary-subtle">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">CALISA</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Pendientes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Crédito</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contado</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Menú
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Imprimir</a></li>
-                            <li><a class="dropdown-item" href="#">Cambiar contraseña</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
-                        </ul>
-                    </li>
-                </ul>
+            <div class="container-fluid px-4">
+                <a class="navbar-brand" href="#">
+                    <img src="@Url.Content("~/logos/calisa-small.png")" alt="Logo" width="60" height="48" class="d-inline-block align-text-top">
+                </a>
+                <div class="d-flex flex-row-reverse">
+                    <ul class="nav-ul navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Pendientes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Crédito</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contado</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Menú
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="#">Imprimir</a></li>
+                                <li><a class="dropdown-item" href="#">Cambiar contraseña</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
     </header>
@@ -74,7 +88,7 @@
         <p class="col-12 col-md-4 mb-0 text-body-secondary text-center text-md-start ps-md-3 ps-0">2025 CALISA Aceros Linares</p>
 
         <a href="/" class="col-12 col-md-4 d-flex align-items-center justify-content-center my-3 my-md-0 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-            <img class="logo img-fluid" src="@Url.Content("~/logos/calisa-large.png")" alt="calisa logo" style="max-width: 100%; height: auto;">
+            <img class="logo img-fluid" src="@Url.Content("~/logos/calisa-large.png")" alt="calisa logo">
         </a>
 
         <ul class="nav col-12 col-md-4 justify-content-center justify-content-md-end pe-md-3 pe-0">
