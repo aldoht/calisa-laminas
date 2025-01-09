@@ -13,10 +13,10 @@ public class Order : BaseModel
     public int ClientId { get; set; }
 
     [Column("type")]
-    public string Type { get; set; }
+    public string Type { get; set; } = string.Empty;
 
     [Column("finish")]
-    public string Finish { get; set; }
+    public string Finish { get; set; } = string.Empty;
 
     [Column("caliber")]
     public int Caliber { get; set; }
@@ -40,7 +40,7 @@ public class Order : BaseModel
     public bool Paid { get; set; }
 
     [Column("user_uuid")]
-    public string UserUuid { get; set; }
+    public string UserUuid { get; set; } = string.Empty;
 
     [Column("done_at")]
     public DateTimeOffset? DoneAt { get; set; }

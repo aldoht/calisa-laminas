@@ -7,14 +7,14 @@ namespace Models;
 public class Profile : BaseModel
 {
     [PrimaryKey("id")]
-    public string Id { get; set; }
+    public string Id { get; set; } = string.Empty;
 
     [Column("first_name")]
-    public string FirstName { get; set; }
+    public string FirstName { get; set; } = string.Empty;
 
     [Column("last_name")]
-    public string LastName { get; set; }
+    public string LastName { get; set; } = string.Empty;
 
     [Column("role")]
-    public string Role { get; set; }
+    public string Role { get; set; } = string.Empty;
 }

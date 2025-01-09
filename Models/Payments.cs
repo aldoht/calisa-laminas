@@ -16,7 +16,7 @@ public class Payment : BaseModel
     public decimal Amount { get; set; }
 
     [Column("method")]
-    public string Method { get; set; }
+    public string Method { get; set; } = string.Empty;
 
     [Column("bank")]
     public string? Bank { get; set; }
@@ -25,5 +25,5 @@ public class Payment : BaseModel
     public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
 
     [Column("user_id")]
-    public string UserId { get; set; }
+    public string UserId { get; set; } = string.Empty;
 }
