@@ -8,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages(options => 
 {
     options.Conventions.AddPageRoute("/IniciarSesion/Index", "/");
+    options.Conventions.AuthorizeFolder("/");
+    options.Conventions.AllowAnonymousToFolder("/IniciarSesion");
 });
 
 var url = builder.Configuration["SUPABASE_URL"]!;
