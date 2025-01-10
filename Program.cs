@@ -12,17 +12,17 @@ builder.Services.AddRazorPages(options =>
     options.Conventions.AllowAnonymousToFolder("/IniciarSesion");
 });
 
-var url = builder.Configuration["SUPABASE_URL"]!;
-var key = builder.Configuration["SUPABASE_KEY"];
-var options = new Supabase.SupabaseOptions
-{
-    AutoConnectRealtime = true,
-    AutoRefreshToken = true
-};
-var supabase = new Supabase.Client(url, key, options);
-await supabase.InitializeAsync();
-
-builder.Services.AddSingleton(supabase);
+builder.Services.AddScoped<Supabase.Client>(_ => 
+    new Supabase.Client(
+        builder.Configuration["SUPABASE_URL"]!,
+        builder.Configuration["SUPABASE_KEY"],
+        new Supabase.SupabaseOptions
+        {
+            AutoConnectRealtime = true,
+            AutoRefreshToken = true
+        }
+    )
+);
 
 builder.Services.AddAuthorization();
 
