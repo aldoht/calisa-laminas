@@ -46,29 +46,29 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-primary-subtle">
             <div class="container-fluid px-4">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" asp-page="/Dashboard/Index">
                     <img src="@Url.Content("~/logos/calisa-small.png")" alt="Logo" width="60" height="48" class="d-inline-block align-text-top">
                 </a>
                 <div class="d-flex flex-row-reverse">
                     <ul class="nav-ul navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Pendientes</a>
+                            <a class="nav-link" asp-page="/Dashboard/Pendientes/Index">Pendientes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Crédito</a>
+                            <a class="nav-link" asp-page="/Dashboard/Credito/Index">Crédito</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contado</a>
+                            <a class="nav-link" asp-page="/Dashboard/Contado/Index">Contado</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Menú
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="#">Imprimir</a></li>
-                                <li><a class="dropdown-item" href="#">Cambiar contraseña</a></li>
+                                <li><a class="dropdown-item" asp-page="/Configuracion/Impresion/Index">Imprimir</a></li>
+                                <li><a class="dropdown-item" asp-page="/Configuracion/CambiarContraseña/Index">Cambiar contraseña</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                                <li><a class="dropdown-item" asp-page="/Configuracion/CerrarSesion/Index">Cerrar sesión</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -84,17 +84,17 @@
         </div>
     </div>
 
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-4 border-top">
         <p class="col-12 col-md-4 mb-0 text-body-secondary text-center text-md-start ps-md-3 ps-0">2025 CALISA Aceros Linares</p>
 
-        <a href="/" class="col-12 col-md-4 d-flex align-items-center justify-content-center my-3 my-md-0 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+        <a class="col-12 col-md-4 d-flex align-items-center justify-content-center my-3 my-md-0 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
             <img class="logo img-fluid" src="@Url.Content("~/logos/calisa-large.png")" alt="calisa logo">
         </a>
 
         <ul class="nav col-12 col-md-4 justify-content-center justify-content-md-end pe-md-3 pe-0">
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pendientes</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Crédito</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Contado</a></li>
+            <li class="nav-item"><a asp-page="/Dashboard/Pendientes/Index" class="nav-link px-2 text-body-secondary">Pendientes</a></li>
+            <li class="nav-item"><a asp-page="/Dashboard/Credito/Index" class="nav-link px-2 text-body-secondary">Crédito</a></li>
+            <li class="nav-item"><a asp-page="/Dashboard/Contado/Index" class="nav-link px-2 text-body-secondary">Contado</a></li>
         </ul>
     </footer>
 
