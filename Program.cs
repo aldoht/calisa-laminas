@@ -12,6 +12,7 @@ builder.Services.AddRazorPages(options =>
     options.Conventions.AddPageRoute("/IniciarSesion/Index", "/");
     options.Conventions.AuthorizeFolder("/");
     options.Conventions.AllowAnonymousToFolder("/IniciarSesion");
+    options.Conventions.AllowAnonymousToFolder("/Configuracion/ReiniciarContraseña");
 });
 
 builder.Services.AddScoped<Supabase.Client>(_ => 

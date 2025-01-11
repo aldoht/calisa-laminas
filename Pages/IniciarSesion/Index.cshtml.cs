@@ -39,7 +39,7 @@ public class IniciarSesionIndexModel : PageModel
             
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.NameIdentifier, session.User.Id!),
+                new Claim(ClaimTypes.NameIdentifier, session!.User!.Id!),
                 new Claim(ClaimTypes.Email, session.User.Email!),
                 new Claim("SupabaseAccessToken", session.AccessToken!),
                 new Claim("SupabaseRefreshToken", session.RefreshToken!)
