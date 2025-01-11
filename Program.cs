@@ -1,5 +1,7 @@
 using System.Text;
 
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,18 +27,17 @@ builder.Services.AddScoped<Supabase.Client>(_ =>
 );
 
 builder.Services.AddAuthorization();
-
-var bytes = Encoding.UTF8.GetBytes(builder.Configuration["JWT_SECRET"]!);
-builder.Services.AddAuthentication().AddJwtBearer(options =>
-{
-    options.TokenValidationParameters = new TokenValidationParameters
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(
+    options => 
     {
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(bytes),
-        ValidAudience = builder.Configuration["SUPABASE_VALID_AUDIENCE"],
-        ValidIssuer = builder.Configuration["SUPABASE_VALID_ISSUER"]
-    };
-});
+        options.Cookie.SameSite = SameSiteMode.None;
+        options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+        options.Cookie.IsEssential = true;
+        options.LoginPath = "/IniciarSesion/Index";
+        options.LogoutPath = "/Configuracion/CerrarSesion/Index";
+    }
+    );
 
 var app = builder.Build();
 
