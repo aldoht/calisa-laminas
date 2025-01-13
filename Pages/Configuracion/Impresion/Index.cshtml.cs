@@ -1,8 +1,8 @@
-using Microsoft.AspNetCore.Mvc.RazorPages;
+using laminas_calisa.Models;
 
 namespace laminas_calisa.Pages.Configuracion.Impresion
 {
-    public class ImpresionIndexModel : PageModel
+    public class ImpresionIndexModel : BasePageModel
     {
         private readonly ILogger<ImpresionIndexModel> _logger;
         private readonly Supabase.Client _supabase;

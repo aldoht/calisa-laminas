@@ -1,8 +1,8 @@
-using Microsoft.AspNetCore.Mvc.RazorPages;
+using laminas_calisa.Models;
 
 namespace laminas_calisa.Pages.Dashboard.Pendientes
 {
-    public class PendientesIndexModel : PageModel
+    public class PendientesIndexModel : BasePageModel
     {
         private readonly ILogger<PendientesIndexModel> _logger;
         private readonly Supabase.Client _supabase;

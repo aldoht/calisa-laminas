@@ -1,16 +1,17 @@
 using System.Security.Claims;
 using System.Text.RegularExpressions;
 
+using laminas_calisa.Models;
+
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 
 using NToastNotify;
 
 namespace laminas_calisa.Pages.IniciarSesion
 {
-    public class IniciarSesionIndexModel : PageModel
+    public class IniciarSesionIndexModel : BasePageModel
     {
         private readonly ILogger<IniciarSesionIndexModel> _logger;
         private readonly Supabase.Client _supabase;

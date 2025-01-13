@@ -1,8 +1,8 @@
-using Microsoft.AspNetCore.Mvc.RazorPages;
+using laminas_calisa.Models;
 
 namespace laminas_calisa.Pages.Dashboard.Contado
 {
-    public class ContadoIndexModel : PageModel
+    public class ContadoIndexModel : BasePageModel
     {
         private readonly ILogger<ContadoIndexModel> _logger;
         private readonly Supabase.Client _supabase;

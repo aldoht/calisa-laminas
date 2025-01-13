@@ -1,8 +1,8 @@
-using Microsoft.AspNetCore.Mvc.RazorPages;
+using laminas_calisa.Models;
 
 namespace laminas_calisa.Pages.Dashboard.Credito
 {
-    public class CreditoIndexModel : PageModel
+    public class CreditoIndexModel : BasePageModel
     {
         private readonly ILogger<CreditoIndexModel> _logger;
         private readonly Supabase.Client _supabase;

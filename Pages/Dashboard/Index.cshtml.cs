@@ -1,8 +1,8 @@
-using Microsoft.AspNetCore.Mvc.RazorPages;
+using laminas_calisa.Models;
 
 namespace laminas_calisa.Pages.Dashboard
 {
-    public class DashboardIndexModel : PageModel
+    public class DashboardIndexModel : BasePageModel
     {
         private readonly ILogger<DashboardIndexModel> _logger;
         private readonly Supabase.Client _supabase;
