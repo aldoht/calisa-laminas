@@ -6,16 +6,20 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
+using NToastNotify;
+
 namespace laminas_calisa.Pages.IniciarSesion
 {
     public class IniciarSesionIndexModel : PageModel
     {
         private readonly ILogger<IniciarSesionIndexModel> _logger;
         private readonly Supabase.Client _supabase;
-        public IniciarSesionIndexModel(ILogger<IniciarSesionIndexModel> logger, Supabase.Client client)
+        private readonly IToastNotification _toastNotification;
+        public IniciarSesionIndexModel(ILogger<IniciarSesionIndexModel> logger, Supabase.Client client, IToastNotification toastNotification)
         {
             _logger = logger;
             _supabase = client;
+            _toastNotification = toastNotification;
         }
 
         public void OnGet()
@@ -28,8 +32,16 @@ namespace laminas_calisa.Pages.IniciarSesion
             string email = Request.Form["email"].ToString().ToLower() ?? "";
             string password = Request.Form["pwd"].ToString() ?? "";
 
-            if (!Regex.Match(email, @"^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$").Success) return Page();
-            if (!Regex.Match(password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[-_&!#,;:]).{10,30}$").Success) return Page();
+            if (!Regex.Match(email, @"^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$").Success)
+            {
+                _toastNotification.AddErrorToastMessage("Correo no válido. Intente de nuevo.");
+                return Page();
+            }
+            if (!Regex.Match(password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[-_&!#,;:]).{10,30}$").Success)
+            {
+                _toastNotification.AddErrorToastMessage("Contraseña no válida. Intente de nuevo.");
+                return Page();
+            }
 
             try
             {
@@ -61,6 +73,7 @@ namespace laminas_calisa.Pages.IniciarSesion
             catch (Exception ex)
             {
                 _logger.LogError($"Failed login attempt at {DateTime.UtcNow} with error {ex.Message}");
+                _toastNotification.AddErrorToastMessage("El correo o contraseña son incorrectos. Intente de nuevo.");
                 return Page();
             }
         }

@@ -12,7 +12,7 @@ builder.Services.AddRazorPages(options =>
     options.Conventions.AddPageRoute("/IniciarSesion/Index", "/");
     options.Conventions.AuthorizeFolder("/");
     options.Conventions.AllowAnonymousToFolder("/IniciarSesion");
-});
+}).AddNToastNotifyToastr();
 
 builder.Services.AddScoped<Supabase.Client>(_ => 
     new Supabase.Client(
@@ -55,6 +55,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseNToastNotify();
 
 app.MapRazorPages();
 
