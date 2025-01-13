@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="icon" href="@Url.Content("~/logos/calisa-icon.ico")">
+    <style>
+        * {
+            color: #fff;
+        }
+
+        .container-bg {
+            background-color: #2a2a2a;
+            padding: 2rem;
+            height: 100vh;
+        }
+
+        p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-bg">
+        <div class="px-0 py-0 h-100 w-100 container-fluid">
+            <main role="main" class="h-100">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

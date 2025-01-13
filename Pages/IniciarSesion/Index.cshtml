@@ -2,15 +2,42 @@
 @model IniciarSesionIndexModel
 @{
     ViewData["Title"] = "Iniciar sesión";
+    Layout = "_LayoutLogin";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to the login</h1>
-    <form method="post">
-        <input type="email" name="email" id="email">
-        <input type="password" name="pwd" id="pwd">
-        <button type="submit">Iniciar sesión</button>
-    </form>
-    <a asp-page="/Configuracion/ReiniciarContraseña/Index">Olvidé mi contraseña</a>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<style>
+    .form-control {
+        margin-bottom: 15px;
+    }
+
+    .first-box {
+        background-color: #3b3b3b;
+        height: 60vh;
+    }
+
+    label, input {
+        color: #000;
+    }
+
+    button {
+        background-color: #fff !important;
+    }
+</style>
+
+<div class="text-center h-100 d-flex align-items-center justify-content-center">
+    <div class="first-box shadow-lg p-5 rounded-3 d-flex flex-column align-items-center justify-content-center">
+        <img src="" alt="">
+        <h1 class="display-4 mb-4">Iniciar sesión</h1>
+        <form class="w-100" method="post">
+            <div class="form-group form-floating mb-4">
+                <input required class="form-control" type="email" name="email" id="email">
+                <label for="email">Correo electrónico</label>
+            </div>
+            <div class="form-group form-floating mb-4">
+                <input class="form-control" type="password" name="pwd" id="pwd">
+                <label for="email">Contraseña</label>
+            </div>
+            <button class="btn mb-4" type="submit">Iniciar sesión</button>
+        </form>
+    </div>
 </div>
