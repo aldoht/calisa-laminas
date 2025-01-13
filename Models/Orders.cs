@@ -39,8 +39,8 @@ public class Order : BaseModel
     [Column("paid")]
     public bool Paid { get; set; }
 
-    [Column("user_uuid")]
-    public string UserUuid { get; set; } = string.Empty;
+    [Column("user_id")]
+    public string UserId { get; set; } = string.Empty;
 
     [Column("done_at")]
     public DateTimeOffset? DoneAt { get; set; }

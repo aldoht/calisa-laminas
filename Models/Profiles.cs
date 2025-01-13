@@ -6,7 +6,7 @@ namespace Models;
 [Table("Profiles")]
 public class Profile : BaseModel
 {
-    [PrimaryKey("id")]
+    [Column("id")]
     public string Id { get; set; } = string.Empty;
 
     [Column("first_name")]
@@ -17,4 +17,7 @@ public class Profile : BaseModel
 
     [Column("role")]
     public string Role { get; set; } = string.Empty;
+    
+    [PrimaryKey("table_id")]
+    public string TableId { get; set; } = string.Empty;
 }
