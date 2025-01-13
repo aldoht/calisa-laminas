@@ -1,19 +1,20 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace laminas_calisa.Pages;
-
-public class CreditoIndexModel : PageModel
+namespace laminas_calisa.Pages.Dashboard.Credito
 {
-    private readonly ILogger<CreditoIndexModel> _logger;
-    private readonly Supabase.Client _supabase;
-    public CreditoIndexModel(ILogger<CreditoIndexModel> logger, Supabase.Client client)
+    public class CreditoIndexModel : PageModel
     {
-        _logger = logger;
-        _supabase = client;
-    }
+        private readonly ILogger<CreditoIndexModel> _logger;
+        private readonly Supabase.Client _supabase;
+        public CreditoIndexModel(ILogger<CreditoIndexModel> logger, Supabase.Client client)
+        {
+            _logger = logger;
+            _supabase = client;
+        }
 
-    public void OnGet()
-    {
-        //
+        public void OnGet()
+        {
+            //
+        }
     }
 }

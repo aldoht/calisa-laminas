@@ -1,19 +1,20 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace laminas_calisa.Pages;
-
-public class DashboardIndexModel : PageModel
+namespace laminas_calisa.Pages.Dashboard
 {
-    private readonly ILogger<DashboardIndexModel> _logger;
-    private readonly Supabase.Client _supabase;
-    public DashboardIndexModel(ILogger<DashboardIndexModel> logger, Supabase.Client client)
+    public class DashboardIndexModel : PageModel
     {
-        _logger = logger;
-        _supabase = client;
-    }
+        private readonly ILogger<DashboardIndexModel> _logger;
+        private readonly Supabase.Client _supabase;
+        public DashboardIndexModel(ILogger<DashboardIndexModel> logger, Supabase.Client client)
+        {
+            _logger = logger;
+            _supabase = client;
+        }
 
-    public void OnGet()
-    {
-        Console.WriteLine("se procesó un get a la vista");
+        public void OnGet()
+        {
+            Console.WriteLine("se procesó un get a la vista");
+        }
     }
 }

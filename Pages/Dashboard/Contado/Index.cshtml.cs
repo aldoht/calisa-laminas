@@ -1,19 +1,20 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace laminas_calisa.Pages;
-
-public class ContadoIndexModel : PageModel
+namespace laminas_calisa.Pages.Dashboard.Contado
 {
-    private readonly ILogger<ContadoIndexModel> _logger;
-    private readonly Supabase.Client _supabase;
-    public ContadoIndexModel(ILogger<ContadoIndexModel> logger, Supabase.Client client)
+    public class ContadoIndexModel : PageModel
     {
-        _logger = logger;
-        _supabase = client;
-    }
+        private readonly ILogger<ContadoIndexModel> _logger;
+        private readonly Supabase.Client _supabase;
+        public ContadoIndexModel(ILogger<ContadoIndexModel> logger, Supabase.Client client)
+        {
+            _logger = logger;
+            _supabase = client;
+        }
 
-    public void OnGet()
-    {
-        //
+        public void OnGet()
+        {
+            //
+        }
     }
 }

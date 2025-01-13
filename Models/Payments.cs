@@ -1,29 +1,30 @@
 using Supabase.Postgrest.Attributes;
 using Supabase.Postgrest.Models;
 
-namespace Models;
-
-[Table("Payments")]
-public class Payment : BaseModel
+namespace laminas_calisa.Models
 {
-    [PrimaryKey("id")]
-    public int Id { get; set; }
+    [Table("Payments")]
+    public class Payment : BaseModel
+    {
+        [PrimaryKey("id")]
+        public int Id { get; set; }
 
-    [Column("order_id")]
-    public int OrderId { get; set; }
+        [Column("order_id")]
+        public int OrderId { get; set; }
 
-    [Column("amount")]
-    public decimal Amount { get; set; }
+        [Column("amount")]
+        public decimal Amount { get; set; }
 
-    [Column("method")]
-    public string Method { get; set; } = string.Empty;
+        [Column("method")]
+        public string Method { get; set; } = string.Empty;
 
-    [Column("bank")]
-    public string? Bank { get; set; }
+        [Column("bank")]
+        public string? Bank { get; set; }
 
-    [Column("created_at")]
-    public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
+        [Column("created_at")]
+        public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
 
-    [Column("user_id")]
-    public string UserId { get; set; } = string.Empty;
+        [Column("user_id")]
+        public string UserId { get; set; } = string.Empty;
+    }
 }

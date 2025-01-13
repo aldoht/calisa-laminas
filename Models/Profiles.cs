@@ -1,7 +1,7 @@
 using Supabase.Postgrest.Attributes;
 using Supabase.Postgrest.Models;
 
-namespace Models;
+namespace laminas_calisa.Models;
 
 [Table("Profiles")]
 public class Profile : BaseModel
