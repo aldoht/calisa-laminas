@@ -4,6 +4,8 @@ using laminas_calisa.Models;
 
 using Microsoft.AspNetCore.Mvc;
 
+using NToastNotify;
+
 using Supabase.Gotrue;
 
 namespace laminas_calisa.Pages.Configuracion.CambiarContraseña
@@ -12,23 +14,16 @@ namespace laminas_calisa.Pages.Configuracion.CambiarContraseña
     {
         private readonly ILogger<ChangePasswordIndexModel> _logger;
         private readonly Supabase.Client _supabase;
-        public ChangePasswordIndexModel(ILogger<ChangePasswordIndexModel> logger, Supabase.Client client)
+        private readonly IToastNotification _toastNotification;
+        public ChangePasswordIndexModel(ILogger<ChangePasswordIndexModel> logger, Supabase.Client client, IToastNotification toastNotification)
         {
             _logger = logger;
             _supabase = client;
+            _toastNotification = toastNotification;
         }
 
-        public async Task<IActionResult> OnGetAsync()
+        public IActionResult OnGet()
         {
-            try {
-                var session = await _supabase.Auth.SetSession(SupabaseAccessToken, SupabaseRefreshToken);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Failed sign in attempt at {DateTime.UtcNow} with error {ex.Message}");
-                return RedirectToPage("/");
-            }
-
             return Page();
         }
 
@@ -42,6 +37,14 @@ namespace laminas_calisa.Pages.Configuracion.CambiarContraseña
 
             try
             {
+                await _supabase.Auth.SetSession(SupabaseAccessToken, SupabaseRefreshToken);
+
+                if (_supabase.Auth.CurrentUser == null)
+                {
+                    _toastNotification.AddErrorToastMessage("No se pudo asegurar la sesión actual.");
+                    return Page();
+                }
+                
                 var attrs = new UserAttributes { Password = password };
                 var user = await _supabase.Auth.Update(attrs);
 

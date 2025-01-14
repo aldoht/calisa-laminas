@@ -4,12 +4,38 @@
     ViewData["Title"] = "Cambiar contraseña";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to the cambiar contraseña</h1>
-    <form action="" method="post">
-        <input type="password" name="newPwd">
-        <input type="password" name="checkPwd">
-        <button type="submit">Cambiar contraseña</button>
-    </form>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<style>
+    .form-control {
+        margin-bottom: 15px;
+    }
+
+    .first-box {
+        background-color: #002187;
+        border-radius: 3rem;
+    }
+
+    label, input {
+        color: #000;
+    }
+
+    button {
+        background-color: #fff !important;
+    }
+</style>
+
+<div class="text-center h-100 d-flex align-items-center justify-content-center">
+    <div class="first-box shadow-lg p-5 d-flex flex-column align-items-center justify-content-center">
+        <h1 class="display-4 mb-4">Cambiar contraseña</h1>
+        <form class="w-100" method="post">
+            <div class="form-group form-floating mb-4">
+                <input class="form-control" type="password" name="newPwd" id="newPwd">
+                <label for="newPwd">Nueva contraseña</label>
+            </div>
+            <div class="form-group form-floating mb-4">
+                <input class="form-control" type="password" name="checkPwd" id="checkPwd">
+                <label for="checkPwd">Confirmar contraseña</label>
+            </div>
+            <button class="btn mb-4" type="submit">Cambiar contraseña</button>
+        </form>
+    </div>
 </div>
