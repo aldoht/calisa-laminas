@@ -1,11 +1,10 @@
 using System.Security.Claims;
 using System.Text.RegularExpressions;
-
-using laminas_calisa.Models;
-
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+
+using laminas_calisa.Models;
 
 using NToastNotify;
 
@@ -23,9 +22,9 @@ namespace laminas_calisa.Pages.IniciarSesion
             _toastNotification = toastNotification;
         }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
-            //
+            return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()

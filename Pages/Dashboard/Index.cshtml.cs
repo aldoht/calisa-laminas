@@ -1,5 +1,7 @@
 using laminas_calisa.Models;
 
+using Microsoft.AspNetCore.Mvc;
+
 namespace laminas_calisa.Pages.Dashboard
 {
     public class DashboardIndexModel : BasePageModel
@@ -12,9 +14,9 @@ namespace laminas_calisa.Pages.Dashboard
             _supabase = client;
         }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
-            Console.WriteLine("se procesó un get a la vista");
+            return Page();
         }
     }
 }
