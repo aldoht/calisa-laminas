@@ -4,7 +4,23 @@
     ViewData["Title"] = "Dashboard";
 }
 
+<style>
+    .filter-btns > button {
+        border-radius: 2rem;
+        background-color: #ffffff;
+        width: 8rem;
+    }
+</style>
+
 <div class="text-center">
-    <h1 class="display-4">Welcome to the dashboard</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <div class="filter-btns d-flex gap-3 w-100 align-items-center justify-content-start">
+        <p class="pe-3">Filtros:</p>
+        <button class="btn p-1">Filtro</button>
+        <button class="btn p-1">Filtro</button>
+        <button class="btn p-1">Filtro</button>
+    </div>
+    <div class="results-table-container">
+        @* table for md or higher *@
+        @* table for lower *@
+    </div>
 </div>

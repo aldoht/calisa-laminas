@@ -38,17 +38,25 @@
         .dropdown-menu a {
             color: #000;
         }
+        
+        .navbar-nav {
+            flex-direction: row!important;
+        }
+
+        .dropdown-menu {
+            position: absolute !important;
+        }
     </style>
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-lg bg-primary-subtle">
-            <div class="container-fluid px-4">
-                <a class="navbar-brand" asp-page="/Dashboard/Index">
+            <div class="container-fluid px-2 px-md-4">
+                <a class="navbar-brand me-0 me-md-1" asp-page="/Dashboard/Index">
                     <img src="@Url.Content("~/logos/calisa-small.png")" alt="Logo" width="60" height="48" class="d-inline-block align-text-top">
                 </a>
                 <div class="d-flex flex-row-reverse">
-                    <ul class="nav-ul navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul class="nav-ul gap-3 navbar-nav me-auto mb-0">
                         <li class="nav-item">
                             <a class="nav-link" asp-page="/Dashboard/Pendientes/Index">Pendientes</a>
                         </li>
