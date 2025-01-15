@@ -22,9 +22,22 @@ namespace laminas_calisa.Pages.IniciarSesion
             _toastNotification = toastNotification;
         }
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGetAsync()
         {
-            return Page();
+            try
+            {
+                await _supabase.Auth.SetSession(SupabaseAccessToken, SupabaseRefreshToken);
+                if (_supabase.Auth.CurrentSession == null)
+                    throw new ArgumentNullException();
+                _logger.LogInformation($"User is logged in.");
+                _toastNotification.AddAlertToastMessage("Cierre la sesión antes de acceder al formulario de inicio de sesión.");
+                return RedirectToPage("/Dashboard/Index");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation($"An unauthenticated user has made a get request to the login form.");
+                return Page();
+            }
         }
 
         public async Task<IActionResult> OnPostAsync()

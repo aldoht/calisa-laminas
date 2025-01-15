@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <_ContentIncludedByDefault Remove="Pages\Configuracion\ReiniciarContraseña\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\Dashboard\Pendientes\Index.cshtml" />
   </ItemGroup>
 
 </Project>
