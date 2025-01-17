@@ -56,5 +56,8 @@ namespace laminas_calisa.Models
 
         [Column("are_ft")]
         public bool AreFt { get; set; }
+        
+        [Column("is_credit")]
+        public bool IsCredit { get; set; }
     }
 }

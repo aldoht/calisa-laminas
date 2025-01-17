@@ -1,5 +1,6 @@
 @page
 @using laminas_calisa.Models
+@using Microsoft.IdentityModel.Tokens
 @model DashboardDetailsModel
 @{
     ViewData["Title"] = "Dashboard";
@@ -15,33 +16,42 @@
 
 <div class="text-center">
     <partial name="Shared/_DashboardButtons"/>
-    <div class="results-table-container table-responsive mt-4">
-        <table class="table table-dark table-striped table-bordered table-hover table-sm w-100 text-center align-middle">
-            <thead class="thead-dark">
-            <tr>
-                @foreach (var property in typeof(DashboardOrdersDetailed).GetProperties())
-                {
-                    @if (Model.UnwantedProperties.Contains(property.Name)) continue;
-                    <th scope="col" class="text-white">
-                        @property.Name
-                    </th>
-                }
-            </tr>
-            </thead>
-            <tbody>
-            @foreach (var result in Model.DashboardOrdersDetailed)
-            {
+    @if (this.Model.DashboardOrdersDetailed.IsNullOrEmpty())
+    {
+        <h2 class="text-white w-100 p-5">
+            No hay órdenes para mostrar
+        </h2>
+    }
+    else
+    {
+        <div class="results-table-container table-responsive mt-4">
+            <table class="table table-dark table-striped table-bordered table-hover table-sm w-100 text-center align-middle">
+                <thead class="thead-dark">
                 <tr>
                     @foreach (var property in typeof(DashboardOrdersDetailed).GetProperties())
                     {
                         @if (Model.UnwantedProperties.Contains(property.Name)) continue;
-                        <td class="text-white">
-                            @property.GetValue(result)
-                        </td>
+                        <th scope="col" class="text-white px-3">
+                            @property.Name
+                        </th>
                     }
                 </tr>
-            }
-            </tbody>
-        </table>
-    </div>
+                </thead>
+                <tbody>
+                @foreach (var result in Model.DashboardOrdersDetailed)
+                {
+                    <tr>
+                        @foreach (var property in typeof(DashboardOrdersDetailed).GetProperties())
+                        {
+                            @if (Model.UnwantedProperties.Contains(property.Name)) continue;
+                            <td class="text-white">
+                                @property.GetValue(result)
+                            </td>
+                        }
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    }
 </div>
