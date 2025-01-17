@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 
+using Supabase.Gotrue;
 using Supabase.Postgrest.Responses;
 
 namespace laminas_calisa.Models;
@@ -10,6 +11,8 @@ public abstract class DashboardModel(ILogger<DashboardModel> logger, Supabase.Cl
 {
     public List<DashboardOrders> DashboardOrders { get; set; } = [];
     public string[] UnwantedProperties = ["BaseUrl", "RequestClientOptions", "TableName", "PrimaryKey"];
+    public string? UserFullName { get; set; } = string.Empty;
+    public string? Role { get; set; } = string.Empty;
 
     public async Task<IActionResult> OnGetAsync()
     {
@@ -18,6 +21,22 @@ public abstract class DashboardModel(ILogger<DashboardModel> logger, Supabase.Cl
             await client.Auth.SetSession(SupabaseAccessToken, SupabaseRefreshToken);
             if (client.Auth.CurrentSession == null)
                 throw new ArgumentNullException(nameof(client.Auth.CurrentSession));
+
+            var results = await client.From<Profile>()
+                .Where(p => p.Id == client.Auth.CurrentUser!.Id)
+                .Get();
+
+            UserFullName = results.Models
+                .Select(p => $"{p.FirstName} {p.LastName}")
+                .FirstOrDefault();
+
+            Role = results.Models
+                .Select(p => p.Role)
+                .FirstOrDefault();
+            
+            if (UserFullName == null || Role == null)
+                throw new ArgumentNullException("User's full name or role is null");
+            
             logger.LogInformation($"User with email {client.Auth.CurrentUser!.Email} accessed dashboard correctly at {DateTime.UtcNow}.");
         }
         catch (Exception ex)

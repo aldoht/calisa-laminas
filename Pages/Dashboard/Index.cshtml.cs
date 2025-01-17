@@ -27,5 +27,26 @@ namespace laminas_calisa.Pages.Dashboard
                 this.DashboardOrders = [];
             }
         }
+
+        public async Task<IActionResult> OnPostDeleteAsync(int id)
+        {
+            try
+            {
+                await client.Auth.SetSession(SupabaseAccessToken, SupabaseRefreshToken);
+                if (client.Auth.CurrentSession == null)
+                    throw new ArgumentNullException(nameof(client.Auth.CurrentSession));
+
+                await client.From<Order>()
+                    .Where(o => o.Id == id)
+                    .Delete();
+                logger.LogInformation($"Admin {client.Auth.CurrentUser!.Email} has deleted order {id}.");
+                return RedirectToPage("/Dashboard/Index");
+            }
+            catch
+            {
+                logger.LogError($"Could not delete order at {DateTime.UtcNow}.");
+                return RedirectToPage("/Dashboard/Index");
+            }
+        }
     }
 }
