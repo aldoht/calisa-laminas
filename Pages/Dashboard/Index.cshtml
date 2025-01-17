@@ -12,6 +12,10 @@
         background-color: #ffffff;
         width: 8rem;
     }
+    
+    .form-control, .form-select {
+        margin-bottom: 1rem;
+    }
 </style>
 
 <div class="text-center">
@@ -38,7 +42,7 @@
                             @property.Name
                         </th>
                     }
-                    @if (Model.Role == "admin")
+                    @if (Model.Role is "admin" or "vendor")
                     {
                         <th scope="col" class="text-white px-3"></th>
                     }
@@ -56,7 +60,7 @@
                             </td>
                         }
                         <td>
-                            @if (Model.Role == "admin")
+                            @if (Model.Role is "admin")
                             {
                                 // DELETE Order
                                 <form class="m-0 p-1" method="post">
@@ -100,31 +104,91 @@
                     </div>
                 </div>
             </div>
+            
+            @if (!Model.DashboardOrders.IsNullOrEmpty())
+            {
+                // UPDATE Order
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarOrdenModal">
+                    Editar orden
+                </button>
 
-            // UPDATE Order
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarOrdenModal">
-                Editar orden
-            </button>
-
-            <div class="modal fade text-black" id="editarOrdenModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editarOrdenModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-fullscreen-md-down">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="editarOrdenModalLabel">Editar orden</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal fade text-black" id="editarOrdenModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editarOrdenModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-fullscreen-md-down">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="editarOrdenModalLabel">Editar orden</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form method="post">
+                                <div class="modal-body m-auto text-start">
+                                    <label class="pb-2 ps-1" for="id">Id</label>
+                                    <select class="form-select" id="id" asp-for="NewOrder.Id">
+                                        @foreach (int id in Model.DashboardOrderIds)
+                                        {
+                                            <option value="@id">@id</option>
+                                        }
+                                    </select>
+                                    <label class="pb-2 ps-1" for="tipo">Tipo</label>
+                                    <select class="form-select" id="tipo" asp-for="NewOrder.Type">
+                                        @foreach (string type in Model.OrderTypes)
+                                        {
+                                            <option value="@type">@type</option>
+                                        }
+                                    </select>
+                                    <label class="pb-2 ps-1" for="acabado">Acabado</label>
+                                    <select class="form-select" id="acabado" asp-for="NewOrder.Finish">
+                                        @foreach (string type in Model.OrderFinishes)
+                                        {
+                                            <option value="@type">@type</option>
+                                        }
+                                    </select>
+                                    <label class="pb-2 ps-1" for="calibre">Calibre</label>
+                                    <input asp-for="NewOrder.Caliber" value="20" class="form-control" id="calibre" max="30" min="12" type="number">
+                                    <label class="pb-2 ps-1" for="largo">Largo</label>
+                                    <input asp-for="NewOrder.Length" value="1" class="form-control" id="largo" min="1" type="number" step="0.01">
+                                    @* Cantidad, peso, descripcion, terminado?, pagado?, si si entonces fecha, son pies?, es credito?, precio *@
+                                    <label class="pb-2 ps-1" for="cantidad">Cantidad</label>
+                                    <input asp-for="NewOrder.Quantity" value="1" class="form-control" id="cantidad" min="1" type="number">
+                                    <label class="pb-2 ps-1" for="peso">Peso (kg)</label>
+                                    <input asp-for="NewOrder.Kg" value="1" class="form-control" id="peso" min="1" type="number" step="0.01">
+                                    <label class="pb-2 ps-1" for="descripcion">Descripción</label>
+                                    <textarea asp-for="NewOrder.Description" class="form-control" id="descripcion"></textarea>
+                                    <div class="form-check">
+                                        <input asp-for="NewOrder.Done" class="form-check-input" type="checkbox" id="terminado">
+                                        <label class="form-check-label" for="terminado">
+                                            Terminado
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input asp-for="NewOrder.Paid" class="form-check-input" type="checkbox" id="pagado">
+                                        <label class="form-check-label" for="pagado">
+                                            Pagado
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input asp-for="NewOrder.AreFt" class="form-check-input" type="checkbox" id="sonPies">
+                                        <label class="form-check-label" for="sonPies">
+                                            Medida en ft
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input asp-for="NewOrder.IsCredit" class="form-check-input" type="checkbox" id="esCredito">
+                                        <label class="form-check-label" for="esCredito">
+                                            Pago a crédito
+                                        </label>
+                                    </div>
+                                    <label class="pb-2 ps-1" for="precio">Precio</label>
+                                    <input asp-for="NewOrder.Price" value="1" class="form-control" id="precio" min="1" type="number" step="0.01">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    <button type="submit" class="btn btn-primary" asp-page-handler="update">Enviar</button>
+                                </div>
+                            </form>
                         </div>
-                        <form method="put">
-                            <div class="modal-body">
-                                @* Usar model binding en el formulario *@
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                <button type="submit" class="btn btn-primary">Enviar</button>
-                            </div>
-                        </form>
                     </div>
                 </div>
-            </div>
+            }
         }
     </div>
 </div>
