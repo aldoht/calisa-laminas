@@ -14,6 +14,7 @@ public class DashboardOrders
     public string? Descripcion { get; set; }
     public required string Terminado { get; set; }
     public required string Pagado { get; set; }
+    public decimal Precio { get; set; }
     public required string TipoDePago { get; set; }
     public required string Usuario { get; set; }
 }

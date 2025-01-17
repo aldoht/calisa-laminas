@@ -56,7 +56,8 @@ public abstract class DashboardModel(ILogger<DashboardModel> logger, Supabase.Cl
                 Usuario = profiles.Models.Where(p => p.TableId == order.UserId)
                     .Select(p => p.FirstName + " " + p.LastName)
                     .First(),
-                TipoDePago = order.IsCredit ? "Crédito" : "Contado"
+                TipoDePago = order.IsCredit ? "Crédito" : "Contado",
+                Precio = order.Price
             })
             .ToList();
     }

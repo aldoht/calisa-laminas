@@ -59,5 +59,8 @@ namespace laminas_calisa.Models
         
         [Column("is_credit")]
         public bool IsCredit { get; set; }
+        
+        [Column("price")]
+        public decimal Price { get; set; }
     }
 }

@@ -19,6 +19,7 @@ public class DashboardOrdersDetailed
     public string? FechaTerminado { get; set; }
     public required string Pagado { get; set; }
     public string? FechaPagado { get; set; }
+    public decimal Precio { get; set; }
     public required string TipoDePago { get; set; }
     public required string Usuario { get; set; }
 }
